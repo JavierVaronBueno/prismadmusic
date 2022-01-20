@@ -1,12 +1,23 @@
-@extends('layouts.app')
+@extends('voyager::auth.master')
+@section('pre_css')
+<style>
+        body.login .login-container {
+            position: absolute;
+            z-index: 10;
+            width: 100%;
+            padding: 30px;
+            top: 0;
+            margin-top: 70px;
+        }
 
+</style>
+@endsection
 @section('content')
-<div class="container">
+<div class="login-container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-12">
             <div class="card">
                 <div class="card-header">{{ __('Reset Password') }}</div>
-
                 <div class="card-body">
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
@@ -17,10 +28,10 @@
                     <form method="POST" action="{{ route('password.email') }}">
                         @csrf
 
-                        <div class="row mb-3">
+                        <div class="row mb-3 ">
                             <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('E-Mail Address') }}</label>
 
-                            <div class="col-md-6">
+                            <div class="form-group form-group-default col-md-6">
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
 
                                 @error('email')
@@ -38,6 +49,7 @@
                                 </button>
                             </div>
                         </div>
+                        <a class="btn btn-block" href="http://127.0.0.1:8000/login" role="button">&#60;&#172; Volver</a>
                     </form>
                 </div>
             </div>
